@@ -1,0 +1,56 @@
+<odoo>
+    <!-- Root -->
+    <menuitem 
+        id="menu_library_root" 
+        name="Library" 
+        sequence="1"
+    />
+
+    <!-- 1st level: Management -->
+    <menuitem 
+        id="menu_library_management" 
+        name="Management" 
+        parent="menu_library_root"
+        sequence="1"
+    />
+
+    <!-- Books action -->
+    <record id="action_library_book" model="ir.actions.act_window">
+        <field name="name">Books</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem 
+        id="menu_library_book_action" 
+        name="Books"
+        parent="menu_library_management" 
+        action="action_library_book"
+        sequence="1"
+    />
+
+    <!-- Partners action -->
+    <record id="action_library_partner" model="ir.actions.act_window">
+        <field name="name">Partners</field>
+        <field name="res_model">library.partner</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem 
+        id="menu_library_partner_action" 
+        name="Partners"
+        parent="menu_library_management" 
+        action="action_library_partner"
+        sequence="2"
+    />
+
+    <!-- 1st level: Configuration -->
+    <menuitem 
+        id="menu_library_configuration" 
+        name="Configuration" 
+        parent="menu_library_root"
+        sequence="2"
+    />
+
+    <!-- You can add more configuration actions here later -->
+</odoo>

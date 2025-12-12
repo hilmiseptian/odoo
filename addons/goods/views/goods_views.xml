@@ -1,0 +1,101 @@
+<odoo>
+  <!-- Tree View -->
+  <record id="view_goods_tree" model="ir.ui.view">
+    <field name="name">goods.list</field>
+    <field name="model">goods</field>
+    <field name="arch" type="xml">
+      <list string="Library Books">
+        <field name="name" />
+        <field name="created_by" />
+        <field name="created_date" />
+        <field name="state" />
+        <field name="borrower_id" />
+        <field name="days_borrowed" />
+      </list>
+    </field>
+  </record>
+
+  <!-- Form View -->
+  <record id="view_goods_form" model="ir.ui.view">
+    <field name="name">goods.form</field>
+    <field name="model">goods</field>
+    <field name="arch" type="xml">
+      <form string="Goods">
+        <header>
+          <button name="action_borrow" type="object" string="Borrow" class="btn-primary"
+            invisible="state != 'available'" />
+          <button name="action_return" type="object" string="Return" class="btn-secondary"
+            invisible="state != 'borrowed'" />
+          <field name="state" widget="statusbar"
+            statusbar_visible="available,borrowed,lost" />
+        </header>
+
+        <sheet>
+          <group>
+            <field name="name" />
+            <field name="created_by" />
+            <field name="created_date" />
+          </group>
+
+          <group>
+            <field name="borrower_id" />
+            <field name="borrowed_date" readonly="1" />
+            <field name="days_borrowed" readonly="1" />
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- Search View -->
+  <record id="view_goods_search" model="ir.ui.view">
+    <field name="name">goods.search</field>
+    <field name="model">goods</field>
+    <field name="arch" type="xml">
+      <search string="Search Books">
+        <field name="name" />
+        <field name="created_by" />
+        <filter string="Available" name="available" domain="[('state','=','available')]" />
+        <filter string="Borrowed" name="borrowed" domain="[('state','=','borrowed')]" />
+        <filter string="Lost" name="lost" domain="[('state','=','lost')]" />
+      </search>
+    </field>
+  </record>
+
+  <!-- Graph view (chart): count of goods per state -->
+  <record id="view_goods_graph_state" model="ir.ui.view">
+    <field name="name">goods.graph.state</field>
+    <field name="model">goods</field>
+    <field name="arch" type="xml">
+      <graph string="Goods by State" type="bar">
+        <field name="state" type="row" />
+        <field name="id" type="measure" />
+      </graph>
+    </field>
+  </record>
+
+  <!-- Action with multiple view modes (list + graph + form) -->
+  <record id="action_goods" model="ir.actions.act_window">
+    <field name="name">Goods</field>
+    <field name="res_model">goods</field>
+    <field name="view_mode">list,form,graph</field>
+    <!-- <field name="view_ids"
+      eval="[
+      (0, 0, {'view_id': ref('view_goods_tree')}),
+      (0, 0, {'view_id': ref('view_goods_graph_state')}),
+      (0, 0, {'view_id': ref('view_goods_form')})
+    ]" /> -->
+  </record>
+
+  <!-- Action & Menu -->
+  <!-- <record id="action_goods" model="ir.actions.act_window">
+    <field name="name">Goods</field>
+    <field name="res_model">goods</field>
+    <field name="view_mode">list,form</field>
+  </record> -->
+
+  <!-- <menuitem id="menu_goods"
+      name="Books"
+      parent="menu_library_root"
+      action="action_goods" /> -->
+</odoo>

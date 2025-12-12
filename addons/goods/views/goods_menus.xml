@@ -1,0 +1,56 @@
+<odoo>
+    <!-- Root -->
+    <menuitem
+        id="menu_goods_root"
+        name="Goods"
+        sequence="1"
+    />
+
+    <!-- 1st level: Management -->
+    <menuitem
+        id="menu_goods_management"
+        name="Management"
+        parent="menu_goods_root"
+        sequence="1"
+    />
+
+    <!-- Goods action -->
+    <record id="action_goods" model="ir.actions.act_window">
+        <field name="name">Goods</field>
+        <field name="res_model">goods</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem
+        id="menu_goods_action"
+        name="Goods"
+        parent="menu_goods_management"
+        action="action_goods"
+        sequence="1"
+    />
+
+    <!-- Borowers action -->
+    <record id="action_goods_borower" model="ir.actions.act_window">
+        <field name="name">Borower</field>
+        <field name="res_model">goods.borower</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem
+        id="menu_goods_borower_action"
+        name="Borowers"
+        parent="menu_goods_management"
+        action="action_goods_borower"
+        sequence="2"
+    />
+
+    <!-- 1st level: Configuration -->
+    <!-- <menuitem 
+        id="menu_goods_configuration" 
+        name="Configuration" 
+        parent="menu_goods_root"
+        sequence="2"
+    /> -->
+
+    <!-- You can add more configuration actions here later -->
+</odoo>

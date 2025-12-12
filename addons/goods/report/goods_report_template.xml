@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <template id="report_goods_template">
+    <t t-name="goods_module.report_goods_template">
+      <t t-call="web.html_container">
+        <t t-call="web.internal_layout">
+
+          <div class="page">
+            <h2>Goods Report</h2>
+
+            <table class="table table-sm mt-3">
+              <tr>
+                <th>Name</th>
+                <td>
+                  <span t-esc="docs.name" />
+                </td>
+              </tr>
+              <tr>
+                <th>Author</th>
+                <td>
+                  <span t-esc="docs.created_by" />
+                </td>
+              </tr>
+              <tr>
+                <th>Status</th>
+                <td>
+                  <span t-esc="docs.state" />
+                </td>
+              </tr>
+              <tr>
+                <th>Borrowed Days</th>
+                <td>
+                  <span t-esc="docs.days_borrowed" />
+                </td>
+              </tr>
+            </table>
+          </div>
+
+        </t>
+      </t>
+    </t>
+  </template>
+</odoo>
